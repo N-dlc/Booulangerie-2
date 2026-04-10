@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>BOULANGERIE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Bouton retour -->
+    <button id="retour" onclick="retour()" style="display:none;">← Retour</button>
+
+    <!-- Titre -->
+    <h1>BOULANGERIE</h1>
+
+    <!-- MENU PRINCIPAL -->
+    <div id="menu-principal" class="center">
+        <button onclick="afficherCategorie('pain')">Pain</button>
+        <button onclick="afficherCategorie('patisserie')">Pâtisserie</button>
+        <button onclick="afficherCategorie('boisson')">Boisson</button>
+    </div>
+
+    <!-- CONTENU DYNAMIQUE -->
+    <div id="contenu" class="center"></div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>contact@boulangerie.fr</p>
+        <p>06 12 34 56 78</p>
+    </footer>
+
+<script>
+function afficherCategorie(categorie) {
+    document.getElementById("menu-principal").style.display = "none";
+    document.getElementById("retour").style.display = "block";
+
+    let contenu = document.getElementById("contenu");
+
+    if (categorie === "pain") {
+        contenu.innerHTML = `
+            <div class="produit" onclick="reserver('Baguette')">
+                <img src="images/pain.jpg">
+                <p>Baguette</p>
+            </div>
+            <div class="produit" onclick="reserver('Pain complet')">
+                <img src="images/pain_complet.jpg">
+                <p>Pain complet</p>
+            </div>
+            <div class="produit" onclick="reserver('Pain aux graines')">
+                <img src="images/pain_graines.jpg">
+                <p>Pain aux graines</p>
+            </div>
+        `;
+    }
+
+    if (categorie === "patisserie") {
+        contenu.innerHTML = `
+            <div class="produit" onclick="reserver('Tarte fraise')">
+                <img src="images/fraise.jpg">
+                <p>Tarte aux fraises</p>
+            </div>
+            <div class="produit" onclick="reserver('Tarte chocolat')">
+                <img src="images/chocolat.jpg">
+                <p>Tarte au chocolat</p>
+            </div>
+            <div class="produit" onclick="reserver('Cookies')">
+                <img src="images/cookie.jpg">
+                <p>Cookies</p>
+            </div>
+        `;
+    }
+
+    if (categorie === "boisson") {
+        contenu.innerHTML = `
+            <div class="produit" onclick="reserver('Coca')">
+                <img src="images/coca.jpg">
+                <p>Coca</p>
+            </div>
+            <div class="produit" onclick="reserver('Café')">
+                <img src="images/cafe.jpg">
+                <p>Café</p>
+            </div>
+            <div class="produit" onclick="reserver('Thé')">
+                <img src="images/the.jpg">
+                <p>Thé</p>
+            </div>
+        `;
+    }
+}
+
+function reserver(produit) {
+    let contenu = document.getElementById("contenu");
+
+    contenu.innerHTML = `
+        <h2>Réserver : ${produit}</h2>
+
+        <input type="date">
+
+        <div class="horaires">
+            <button onclick="valider()">7h - 11h</button>
+            <button onclick="valider()">11h - 15h</button>
+            <button onclick="valider()">15h - 19h</button>
+        </div>
+    `;
+}
+
+function valider() {
+    alert("Réservation envoyée !");
+    retour();
+}
+
+function retour() {
+    document.getElementById("menu-principal").style.display = "flex";
+    document.getElementById("contenu").innerHTML = "";
+    document.getElementById("retour").style.display = "none";
+}
+</script>
+
+</body>
+</html>
